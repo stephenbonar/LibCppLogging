@@ -1,4 +1,4 @@
-// LoggerTests.h - Declares the LoggerTests fixture.
+// Program.cpp - Declares the ChannelSettings struct.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,28 +14,21 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_LOGGER_TESTS_H
-#define LOGGING_LOGGER_TESTS_H
-
-#include <exception>
-#include "gtest/gtest.h"
-#include "Logger.h"
-#include "MockOutputChannel.h"
-
-using ::testing::Eq;
-using ::testing::Property;
-using ::testing::Return;
-using ::testing::_;
+#ifndef LOGGER_CHANNEL_SETTINGS_H
+#define LOGGER_CHANNEL_SETTINGS_H
 
 namespace Logging
 {
-    class LoggerTests : public ::testing::Test
+    struct ChannelSettings
     {
-    protected:
-        /// @brief Constructs the LoggerTests fixture.
-        ///
-        /// Initializes shared data common to all Logger tests.
-        LoggerTests(){}
+        bool includeFatal;
+        bool includeError;
+        bool includeWarning;
+        bool includeInfo;
+        bool includeDebug;
+        bool includeTrace;
+        bool includeTimestamp;
+        bool includeLogLevel;
     };
 }
 

@@ -16,14 +16,61 @@
 
 #include "Logger.h"
 
-namespace Logging
+using namespace Logging;
+
+void Logger::Write(std::string message, LogLevel level)
 {
-    Logger::Logger(
-        Destination destination, 
-        Level minLevel, 
-        std::string fileName) : 
-        destination{ destination }, minLevel{ minLevel }, fileName{ fileName }
+    for (OutputChannel* channel : channels)
     {
+        ChannelSettings settings = channel->Settings();
+        LogMessage logMessage{ message, level };
+        switch (level)
+        {
+            case LogLevel::Fatal:
+                if (settings.includeFatal)
+                    channel->Write(logMessage);
+                break;
+            case LogLevel::Error:
+                if (settings.includeError)
+                    channel->Write(logMessage);
+                break;
+            case LogLevel::Warning:
+                if (settings.includeWarning)
+                    channel->Write(logMessage);
+                break;
+            case LogLevel::Info:
+                if (settings.includeInfo)
+                    channel->Write(logMessage);
+                break;
+            case LogLevel::Debug:
+                if (settings.includeDebug)
+                    channel->Write(logMessage);
+                break;
+            case LogLevel::Trace:
+                if (settings.includeTrace)
+                    channel->Write(logMessage);
+                break;
+        }
     }
 }
 
+void Logger::WriteLine(std::string message, LogLevel level)
+{
+
+}
+
+void Logger::Add(OutputChannel* channel)
+{
+    if (channel == nullptr)
+        throw std::invalid_argument{ "Cannot add null channel" };
+    channels.push_back(channel);
+}
+
+void Logger::Remove(OutputChannel* channel)
+{
+    auto result = std::find(channels.begin(), channels.end(), channel);
+    if (result != channels.end())
+    {
+        channels.erase(result);
+    }
+}

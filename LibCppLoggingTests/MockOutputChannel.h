@@ -1,4 +1,4 @@
-// LoggerTests.h - Declares the LoggerTests fixture.
+// MockOutputChannel.cpp - Declares the MockOutputChannel class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,28 +14,22 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_LOGGER_TESTS_H
-#define LOGGING_LOGGER_TESTS_H
+#ifndef LOGGING_MOCK_OUTPUT_CHANNEL_H
+#define LOGGING_MOCK_OUTPUT_CHANNEL_H
 
-#include <exception>
-#include "gtest/gtest.h"
-#include "Logger.h"
-#include "MockOutputChannel.h"
-
-using ::testing::Eq;
-using ::testing::Property;
-using ::testing::Return;
-using ::testing::_;
+#include <gmock/gmock.h>
+#include "OutputChannel.h"
+#include "ChannelSettings.h"
 
 namespace Logging
 {
-    class LoggerTests : public ::testing::Test
+    class MockOutputChannel : public OutputChannel
     {
-    protected:
-        /// @brief Constructs the LoggerTests fixture.
-        ///
-        /// Initializes shared data common to all Logger tests.
-        LoggerTests(){}
+    public:
+        MOCK_METHOD(ChannelSettings, Settings, (), (const, override));
+        MOCK_METHOD(void, SetSettings, (ChannelSettings settings), (override));
+        MOCK_METHOD(void, SetMinLogLevel, (LogLevel level), (override));
+        MOCK_METHOD(void, Write, (LogMessage message), (override));
     };
 }
 

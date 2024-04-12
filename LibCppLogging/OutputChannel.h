@@ -1,4 +1,4 @@
-// ConsoleService.h - Declares the ConsoleService base class.
+// Program.cpp - Declares the OutputChannel class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,26 +14,27 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_CONSOLE_SERVICE_H
-#define LOGGING_CONSOLE_SERVICE_H
+#ifndef LOGGING_OUTPUT_CHANNEL_H
+#define LOGGING_OUTPUT_CHANNEL_H
 
-#include <string>
+#include "ChannelSettings.h"
+#include "LogLevel.h"
+#include "LogMessage.h"
 
 namespace Logging
 {
-    class ConsoleService
+    class OutputChannel
     {
     public:
-        /// @brief Destructs a ConsoleService.
-        virtual ~ConsoleService() = default;
+        virtual ~OutputChannel() = default;
 
-        virtual void WriteStandardOutput(std::string message) = 0;
+        virtual ChannelSettings Settings() const = 0;
 
-        virtual void WriteLineStandardOutput(std::string message) = 0;
+        virtual void SetSettings(ChannelSettings settings) = 0;
 
-        virtual void WriteStandardError(std::string message) = 0;
+        virtual void SetMinLogLevel(LogLevel level) = 0;
 
-        virtual void WriteLineStandardError(std::string message) = 0;
+        virtual void Write(LogMessage message) = 0;
     };
 }
 

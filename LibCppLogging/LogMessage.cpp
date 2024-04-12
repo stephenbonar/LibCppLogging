@@ -1,4 +1,4 @@
-// LoggerTests.h - Declares the LoggerTests fixture.
+// Program.cpp - Defines the LogMessage class methods.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,29 +14,33 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_LOGGER_TESTS_H
-#define LOGGING_LOGGER_TESTS_H
+#include "LogMessage.h"
 
-#include <exception>
-#include "gtest/gtest.h"
-#include "Logger.h"
-#include "MockOutputChannel.h"
+using namespace Logging;
 
-using ::testing::Eq;
-using ::testing::Property;
-using ::testing::Return;
-using ::testing::_;
-
-namespace Logging
+LogMessage::LogMessage(std::string text, LogLevel level) :
+    text{ text }, 
+    level { level }, 
+    timestamp{ std::chrono::system_clock::now() }
 {
-    class LoggerTests : public ::testing::Test
-    {
-    protected:
-        /// @brief Constructs the LoggerTests fixture.
-        ///
-        /// Initializes shared data common to all Logger tests.
-        LoggerTests(){}
-    };
 }
 
-#endif
+std::chrono::time_point<std::chrono::system_clock> LogMessage::Timestamp()
+{
+
+}
+
+std::string LogMessage::TimestampPrefix() const
+{
+    
+}
+
+std::string LogMessage::LevelPrefix() const
+{
+
+}
+
+std::string LogMessage::PrefixedText(ChannelSettings settings) const
+{
+
+}

@@ -1,4 +1,4 @@
-// FileService.h - Declares the IFileService base class.
+// Program.cpp - Declares the LogLevel class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,19 +14,19 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_FILE_SERVICE_H
-#define LOGGING_FILE_SERVICE_H
-
-#include <string>
+#ifndef LOGGING_LOG_LEVEL_H
+#define LOGGING_LOG_LEVEL_H
 
 namespace Logging
 {
-    class FileService
+    enum LogLevel
     {
-    public:
-        virtual void Write(std::string message) = 0;
-
-        virtual void WriteLine(std::string message) = 0;
+        Fatal,
+        Error,
+        Warning,
+        Info,
+        Debug,
+        Trace
     };
 }
 

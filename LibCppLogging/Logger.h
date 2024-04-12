@@ -18,38 +18,38 @@
 #define LOGGING_LOGGER_H
 
 #include <string>
-#include <memory>
-#include "LogService.h"
-#include "Level.h"
-#include "Destination.h"
+#include <vector>
+#include <algorithm>
+#include "OutputChannel.h"
+#include "LogMessage.h"
+#include "LogLevel.h"
 
 namespace Logging
 {
-    /// @brief Provides the ability to log messages to the console or a file.
+    /// @brief Provides the ability to log messages to different channels.
     class Logger
     {
     public:
         /// @brief Creates a new instance of Logger.
-        /// @param service The log service to inject into the logger.
-        /// @param minLevel The minimum logging level to include.
-        /// @invariant The service should not be null.
-        Logger(
-            std::shared_ptr<LogService> service, 
-            Level minLevel = Level::Info);
+        Logger() { }
 
-        /// @brief Writes a message to the logging destination.
-        /// @param message The message to write to the logging destination.
-        /// @param level The logging level of the message.
-        void Write(std::string message, Level level = Level::Info);
+        void Write(std::string message, LogLevel level = LogLevel::Info);
 
-        /// @brief Writes a message to the logging destination with a new line.
-        /// @param message The message to write to the logging destination.
-        /// @param level The logging level of the message.
-        void WriteLine(std::string message, Level level = Level::Info);
+        void WriteLine(std::string message, LogLevel level = LogLevel::Info);
+
+        /// @brief Adds the specified OutputChannel to the logger.
+        /// @param channel The channel to add.
+        /// @pre Channel is not null.
+        /// @exception Throws std::invalid_argument exception on null.
+        void Add(OutputChannel* channel);
+
+        /// @brief Removes the specified OutputChannel from the logger.
+        /// @param channel The channel to remove.
+        void Remove(OutputChannel* channel);
+
+        std::vector<OutputChannel*> Channels() { return channels; }
     private:
-        std::string fileName;
-        Level minLevel;
-        Destination destination;
+        std::vector<OutputChannel*> channels;
     };
 }
 
