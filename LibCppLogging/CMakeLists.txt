@@ -18,7 +18,12 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Define the source files needed to build the library.
-set(SOURCES Logger.cpp LogMessage.cpp OutputChannel.cpp)
+set(SOURCES 
+    Logger.cpp 
+    LogMessage.cpp 
+    OutputChannel.cpp 
+    StandardOutput.cpp
+    CTimeService.cpp)
 
 # Configure the library build target. Any cmake project that adds
 # this library's directory using add_subdirectory() and 

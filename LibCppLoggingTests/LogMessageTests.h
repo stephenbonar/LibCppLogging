@@ -1,4 +1,4 @@
-// ChannelSettings.h - Declares the ChannelSettings struct.
+// LogMessageTests.h - Declares the LogMessageTests fixture.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,21 +14,29 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGER_CHANNEL_SETTINGS_H
-#define LOGGER_CHANNEL_SETTINGS_H
+#ifndef LOGGING_LOG_MESSAGE_TESTS_H
+#define LOGGING_LOG_MESSAGE_TESTS_H
+
+#include <exception>
+#include <chrono>
+#include <ctime>
+#include "gtest/gtest.h"
+#include "LogMessage.h"
+#include "MockDateTimeService.h"
+
+using ::testing::Return;
 
 namespace Logging
 {
-    struct ChannelSettings
+    class LogMessageTests : public ::testing::Test
     {
-        bool includeFatal = false;
-        bool includeError = false;
-        bool includeWarning = false;
-        bool includeInfo = false;
-        bool includeDebug = false;
-        bool includeTrace = false;
-        bool includeTimestamp = false;
-        bool includeLogLevel = false;
+    protected:
+        /// @brief Constructs the LogMessageTests fixture.
+        ///
+        /// Initializes shared data common to all Logger tests.
+        LogMessageTests();
+
+        MockDateTimeService dateTimeService;
     };
 }
 

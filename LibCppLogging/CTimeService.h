@@ -1,4 +1,4 @@
-// ChannelSettings.h - Declares the ChannelSettings struct.
+// CTimeService.h - Declares the CTimeService class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,21 +14,20 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGER_CHANNEL_SETTINGS_H
-#define LOGGER_CHANNEL_SETTINGS_H
+#ifndef CTIME_SERVICE_H
+#define CTIME_SERVICE_H
+
+#include <string>
+#include <chrono>
+#include <ctime>
+#include "DateTimeService.h"
 
 namespace Logging
 {
-    struct ChannelSettings
+    class CTimeService : public DateTimeService
     {
-        bool includeFatal = false;
-        bool includeError = false;
-        bool includeWarning = false;
-        bool includeInfo = false;
-        bool includeDebug = false;
-        bool includeTrace = false;
-        bool includeTimestamp = false;
-        bool includeLogLevel = false;
+    public:
+        std::string Now() const override;
     };
 }
 

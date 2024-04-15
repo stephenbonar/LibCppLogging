@@ -1,4 +1,4 @@
-// ChannelSettings.h - Declares the ChannelSettings struct.
+// MockDateTimeService.h - Declares the MockDateTimeService class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,21 +14,18 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGER_CHANNEL_SETTINGS_H
-#define LOGGER_CHANNEL_SETTINGS_H
+#ifndef LOGGING_MOCK_DATE_TIME_SERVICE_H
+#define LOGGING_MOCK_DATE_TIME_SERVICE_H
+
+#include <gmock/gmock.h>
+#include "DateTimeService.h"
 
 namespace Logging
 {
-    struct ChannelSettings
+    class MockDateTimeService : public DateTimeService
     {
-        bool includeFatal = false;
-        bool includeError = false;
-        bool includeWarning = false;
-        bool includeInfo = false;
-        bool includeDebug = false;
-        bool includeTrace = false;
-        bool includeTimestamp = false;
-        bool includeLogLevel = false;
+    public:
+        MOCK_METHOD(std::string, Now, (), (const, override));
     };
 }
 

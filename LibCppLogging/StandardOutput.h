@@ -1,4 +1,4 @@
-// MockOutputChannel.h - Declares the MockOutputChannel class.
+// StandardOutput.h - Declares the StandardOutput class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,21 +14,32 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_MOCK_OUTPUT_CHANNEL_H
-#define LOGGING_MOCK_OUTPUT_CHANNEL_H
+#ifndef LOGGING_STANDARD_OUTPUT_H
+#define LOGGING_STANDARD_OUTPUT_H
 
-#include <gmock/gmock.h>
-#include "OutputChannel.h"
+#include <iostream>
 #include "ChannelSettings.h"
+#include "LogLevel.h"
+#include "LogMessage.h"
+#include "OutputChannel.h"
 
 namespace Logging
 {
-    class MockOutputChannel : public OutputChannel
+    class StandardOutput : public OutputChannel
     {
     public:
-        MOCK_METHOD(ChannelSettings, Settings, (), (const, override));
-        MOCK_METHOD(void, SetSettings, (ChannelSettings settings), (override));
-        MOCK_METHOD(void, Write, (LogMessage message), (override));
+        StandardOutput();
+        
+        virtual ChannelSettings Settings() const override { return settings; }
+
+        virtual void SetSettings(ChannelSettings settings) override 
+        {
+            this->settings = settings; 
+        }
+
+        virtual void Write(LogMessage message) override;
+    private:
+        ChannelSettings settings;
     };
 }
 

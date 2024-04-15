@@ -15,7 +15,10 @@
 # limitations under the License.
 
 # Define the source files needed to build the tests.
-set(SOURCES LoggerTests.cpp OutputChannelTests.cpp)
+set(SOURCES 
+    LoggerTests.cpp 
+    OutputChannelTests.cpp 
+    LogMessageTests.cpp)
 
 # Define the directories that contain header files the tests need.
 set(INCLUDES ${PROJECT_SOURCE_DIR}/LibCppLogging)

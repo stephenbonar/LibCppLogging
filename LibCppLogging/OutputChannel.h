@@ -1,4 +1,4 @@
-// Program.cpp - Declares the OutputChannel class.
+// OutputChannel.h - Declares the OutputChannel class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //

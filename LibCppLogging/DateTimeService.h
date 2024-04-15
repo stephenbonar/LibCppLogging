@@ -1,4 +1,4 @@
-// ChannelSettings.h - Declares the ChannelSettings struct.
+// DateTimeService.h - Declares the DateTimeService class.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,21 +14,19 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGER_CHANNEL_SETTINGS_H
-#define LOGGER_CHANNEL_SETTINGS_H
+#ifndef LOGGING_DATE_TIME_SERVICE_H
+#define LOGGING_DATE_TIME_SERVICE_H
+
+#include <string>
 
 namespace Logging
 {
-    struct ChannelSettings
+    class DateTimeService
     {
-        bool includeFatal = false;
-        bool includeError = false;
-        bool includeWarning = false;
-        bool includeInfo = false;
-        bool includeDebug = false;
-        bool includeTrace = false;
-        bool includeTimestamp = false;
-        bool includeLogLevel = false;
+    public:
+        virtual ~DateTimeService() = default;
+
+        virtual std::string Now() const = 0;
     };
 }
 

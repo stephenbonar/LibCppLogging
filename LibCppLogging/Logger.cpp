@@ -18,12 +18,17 @@
 
 using namespace Logging;
 
+Logger::Logger()
+{
+
+}
+
 void Logger::Write(std::string message, LogLevel level)
 {
     for (OutputChannel* channel : channels)
     {
         ChannelSettings settings = channel->Settings();
-        LogMessage logMessage{ message, level };
+        LogMessage logMessage{ message, level, &timeService };
         switch (level)
         {
             case LogLevel::Fatal:
@@ -52,11 +57,6 @@ void Logger::Write(std::string message, LogLevel level)
                 break;
         }
     }
-}
-
-void Logger::WriteLine(std::string message, LogLevel level)
-{
-
 }
 
 void Logger::Add(OutputChannel* channel)

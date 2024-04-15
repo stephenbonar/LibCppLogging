@@ -1,4 +1,4 @@
-// ChannelSettings.h - Declares the ChannelSettings struct.
+// CTimeService.cpp - Defines the CTimeService class methods.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,22 +14,17 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGER_CHANNEL_SETTINGS_H
-#define LOGGER_CHANNEL_SETTINGS_H
+#include "CTimeService.h"
 
-namespace Logging
+using namespace Logging;
+
+std::string CTimeService::Now() const
 {
-    struct ChannelSettings
-    {
-        bool includeFatal = false;
-        bool includeError = false;
-        bool includeWarning = false;
-        bool includeInfo = false;
-        bool includeDebug = false;
-        bool includeTrace = false;
-        bool includeTimestamp = false;
-        bool includeLogLevel = false;
-    };
+    std::chrono::system_clock::time_point now = 
+        std::chrono::system_clock::now();
+    
+    // Convert to a time_t so we can get the formatted time from ctime.
+    std::time_t nowTimeT = std::chrono::system_clock::to_time_t(now);
+    
+    return std::ctime(&nowTimeT);
 }
-
-#endif

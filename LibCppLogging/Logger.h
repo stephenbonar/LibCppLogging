@@ -21,6 +21,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include "CTimeService.h"
 #include "OutputChannel.h"
 #include "LogMessage.h"
 #include "LogLevel.h"
@@ -32,11 +33,9 @@ namespace Logging
     {
     public:
         /// @brief Creates a new instance of Logger.
-        Logger() { }
+        Logger();
 
         void Write(std::string message, LogLevel level = LogLevel::Info);
-
-        void WriteLine(std::string message, LogLevel level = LogLevel::Info);
 
         /// @brief Adds the specified OutputChannel to the logger.
         /// @param channel The channel to add.
@@ -51,6 +50,7 @@ namespace Logging
         std::vector<OutputChannel*> Channels() { return channels; }
     private:
         std::vector<OutputChannel*> channels;
+        CTimeService timeService;
     };
 }
 

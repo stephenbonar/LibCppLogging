@@ -19,17 +19,17 @@
 
 #include <chrono>
 #include <string>
+#include <sstream>
 #include "LogLevel.h"
 #include "ChannelSettings.h"
+#include "DateTimeService.h"
 
 namespace Logging
 {
     class LogMessage
     {
     public:
-        LogMessage(std::string text, LogLevel level);
-
-        std::chrono::time_point<std::chrono::system_clock> Timestamp();
+        LogMessage(std::string text, LogLevel level, DateTimeService* service);
 
         LogLevel Level() const { return level; }
 
@@ -41,9 +41,10 @@ namespace Logging
 
         std::string PrefixedText(ChannelSettings settings) const;
     private:
-        std::chrono::time_point<std::chrono::system_clock> timestamp;
+        std::string timestamp;
         LogLevel level;
         std::string text;
+        DateTimeService* dateTimeService;
     };
 }
 

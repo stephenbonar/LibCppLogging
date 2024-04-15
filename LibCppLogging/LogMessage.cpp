@@ -18,29 +18,50 @@
 
 using namespace Logging;
 
-LogMessage::LogMessage(std::string text, LogLevel level) :
+LogMessage::LogMessage(
+    std::string text, 
+    LogLevel level, 
+    DateTimeService* dateTimeService) :
     text{ text }, 
-    level { level }, 
-    timestamp{ std::chrono::system_clock::now() }
+    level { level },
+    dateTimeService { dateTimeService },
+    timestamp{ "" }
 {
-}
-
-std::chrono::time_point<std::chrono::system_clock> LogMessage::Timestamp()
-{
-    return std::chrono::system_clock::now();
 }
 
 std::string LogMessage::TimestampPrefix() const
 {
-    return "";
+    return dateTimeService->Now();
 }
 
 std::string LogMessage::LevelPrefix() const
 {
+    switch (level)
+    {
+        case LogLevel::Fatal:
+            return "FATAL ERROR:";
+        case LogLevel::Error:
+            return "ERROR:";
+        case LogLevel::Warning:
+            return "WARNING:";
+        case LogLevel::Info:
+            return "INFO:";
+        case LogLevel::Debug:
+            return "DEBUG:";
+        case LogLevel::Trace:
+            return "TRACE:";
+    }
+
     return "";
 }
 
 std::string LogMessage::PrefixedText(ChannelSettings settings) const
 {
-    return "";
+    std::stringstream stream;
+    if (settings.includeTimestamp)
+        stream << TimestampPrefix() << " ";
+    if (settings.includeLogLevel)
+        stream << LevelPrefix() << " ";
+    stream << text;
+    return stream.str();
 }
