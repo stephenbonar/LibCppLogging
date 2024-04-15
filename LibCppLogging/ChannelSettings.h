@@ -21,14 +21,14 @@ namespace Logging
 {
     struct ChannelSettings
     {
-        bool includeFatal;
-        bool includeError;
-        bool includeWarning;
-        bool includeInfo;
-        bool includeDebug;
-        bool includeTrace;
-        bool includeTimestamp;
-        bool includeLogLevel;
+        bool includeFatal = false;
+        bool includeError = false;
+        bool includeWarning = false;
+        bool includeInfo = false;
+        bool includeDebug = false;
+        bool includeTrace = false;
+        bool includeTimestamp = false;
+        bool includeLogLevel = false;
     };
 }
 

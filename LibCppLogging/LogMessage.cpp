@@ -27,20 +27,20 @@ LogMessage::LogMessage(std::string text, LogLevel level) :
 
 std::chrono::time_point<std::chrono::system_clock> LogMessage::Timestamp()
 {
-
+    return std::chrono::system_clock::now();
 }
 
 std::string LogMessage::TimestampPrefix() const
 {
-    
+    return "";
 }
 
 std::string LogMessage::LevelPrefix() const
 {
-
+    return "";
 }
 
 std::string LogMessage::PrefixedText(ChannelSettings settings) const
 {
-
+    return "";
 }

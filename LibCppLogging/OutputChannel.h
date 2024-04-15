@@ -32,7 +32,7 @@ namespace Logging
 
         virtual void SetSettings(ChannelSettings settings) = 0;
 
-        virtual void SetMinLogLevel(LogLevel level) = 0;
+        virtual void SetMinLogLevel(LogLevel level);
 
         virtual void Write(LogMessage message) = 0;
     };

@@ -20,6 +20,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 #include "OutputChannel.h"
 #include "LogMessage.h"
 #include "LogLevel.h"
