@@ -22,7 +22,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Configure the project name and version.
-project(LibCppLogging VERSION 0.5)
+project(LibCppLogging VERSION 0.8)
 
 # Configure the LibCppCmd library build.
 add_subdirectory(LibCppLogging)

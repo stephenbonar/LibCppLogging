@@ -23,6 +23,8 @@ set(SOURCES
     LogMessage.cpp 
     OutputChannel.cpp 
     StandardOutput.cpp
+    StandardError.cpp
+    LogFile.cpp
     CTimeService.cpp)
 
 # Configure the library build target. Any cmake project that adds

@@ -1,4 +1,4 @@
-// StandardError.cpp - Defines the StandardError class methods and functions.
+// LogFile.cpp - Defines the LogFile class methods and functions.
 //
 // Copyright (C) 2024 Stephen Bonar
 //
@@ -14,33 +14,35 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#include "StandardError.h"
+#include "LogFile.h"
 
 using namespace Logging;
 
-StandardError::StandardError()
+LogFile::LogFile(std::string fileName)
 {
-    // The default settings assume we want to include all errors on
-    // standard error.
+    // The default settings assume we want to log all errors to the log file.
     settings.includeFatal = true;
     settings.includeError = true;
     settings.includeWarning = true;
 
-    // The default settings also assume we wouldn't output informational or
-    // other log level messages on standard error.
-    settings.includeInfo = false;
+    // The default settings assume we want informational messages written to
+    // the log file.
+    settings.includeInfo = true;
+
+    // The default settings assume trace and debug should not write to the log
+    // file by default and should only be turned on as necessary.
     settings.includeTrace = false;
     settings.includeDebug = false;
 
-    // The default assumes we don't want to see a timestamp on standard error.
-    settings.includeTimestamp = false;
-
-    // The default assumes we do want to see the prefix so we know what type
-    // of error has occured.
+    // The default settings assume we want both the timestamp and the log level
+    // written to the log file.
+    settings.includeTimestamp = true;
     settings.includeLogLevel = true;
+
+    writeStream = std::ofstream{ fileName };
 }
 
-void StandardError::Write(LogMessage message)
+void LogFile::Write(LogMessage message)
 {
-    std::cerr << message.PrefixedText(settings) << std::endl;
+    writeStream << message.PrefixedText(settings) << std::endl;
 }

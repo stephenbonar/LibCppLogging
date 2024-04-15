@@ -25,6 +25,10 @@ std::string CTimeService::Now() const
     
     // Convert to a time_t so we can get the formatted time from ctime.
     std::time_t nowTimeT = std::chrono::system_clock::to_time_t(now);
+
+    std::string timeString = std::ctime(&nowTimeT);
     
-    return std::ctime(&nowTimeT);
+    // For some reason, std::ctime leaves a trailing newline character in the
+    // string. We erase it from the string when we return it.
+    return timeString.erase(timeString.find('\n'));
 }
