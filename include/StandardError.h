@@ -1,6 +1,6 @@
-// LogFile.h - Declares the LogFile class.
+// StandardError.h - Declares the StandardError class.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,10 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_LOG_FILE_H
-#define LOGGING_LOG_FILE_H
+#ifndef LOGGING_STANDARD_ERROR_H
+#define LOGGING_STANDARD_ERROR_H
 
-#include <string>
-#include <fstream>
+#include <iostream>
 #include "ChannelSettings.h"
 #include "LogLevel.h"
 #include "LogMessage.h"
@@ -26,10 +25,10 @@
 
 namespace Logging
 {
-    class LogFile : public OutputChannel
+    class StandardError : public OutputChannel
     {
     public:
-        LogFile(std::string fileName = "Log.txt");
+        StandardError();
         
         virtual ChannelSettings Settings() const override { return settings; }
 
@@ -41,7 +40,6 @@ namespace Logging
         virtual void Write(LogMessage message) override;
     private:
         ChannelSettings settings;
-        std::ofstream writeStream;
     };
 }
 

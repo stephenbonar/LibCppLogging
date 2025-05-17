@@ -1,6 +1,6 @@
-// DateTimeService.h - Declares the DateTimeService class.
+// OutputChannel.h - Declares the OutputChannel class.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,19 +14,27 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_DATE_TIME_SERVICE_H
-#define LOGGING_DATE_TIME_SERVICE_H
+#ifndef LOGGING_OUTPUT_CHANNEL_H
+#define LOGGING_OUTPUT_CHANNEL_H
 
-#include <string>
+#include "ChannelSettings.h"
+#include "LogLevel.h"
+#include "LogMessage.h"
 
 namespace Logging
 {
-    class DateTimeService
+    class OutputChannel
     {
     public:
-        virtual ~DateTimeService() = default;
+        virtual ~OutputChannel() = default;
 
-        virtual std::string Now() const = 0;
+        virtual ChannelSettings Settings() const = 0;
+
+        virtual void SetSettings(ChannelSettings settings) = 0;
+
+        virtual void SetMinLogLevel(LogLevel level);
+
+        virtual void Write(LogMessage message) = 0;
     };
 }
 

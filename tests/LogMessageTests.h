@@ -1,6 +1,6 @@
-// LoggerTests.h - Declares the OutputChannelTests fixture.
+// LogMessageTests.h - Declares the LogMessageTests fixture.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,29 +14,29 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_OUTPUT_CHANNEL_TESTS_H
-#define LOGGING_OUTPUT_CHANNEL_TESTS_H
+#ifndef LOGGING_LOG_MESSAGE_TESTS_H
+#define LOGGING_LOG_MESSAGE_TESTS_H
 
+#include <exception>
+#include <chrono>
+#include <ctime>
 #include "gtest/gtest.h"
-#include "MockOutputChannel.h"
+#include "LogMessage.h"
+#include "MockDateTimeService.h"
 
-using ::testing::Eq;
-using ::testing::Property;
 using ::testing::Return;
-using ::testing::_;
-using ::testing::FieldsAre;
 
 namespace Logging
 {
-    class OutputChannelTests : public ::testing::Test
+    class LogMessageTests : public ::testing::Test
     {
     protected:
-        /// @brief Constructs the OutputChannelTests fixture.
+        /// @brief Constructs the LogMessageTests fixture.
         ///
         /// Initializes shared data common to all Logger tests.
-        OutputChannelTests();
+        LogMessageTests();
 
-        ChannelSettings initialSettings;
+        MockDateTimeService dateTimeService;
     };
 }
 

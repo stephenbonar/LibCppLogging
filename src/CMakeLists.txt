@@ -1,6 +1,6 @@
 # CMakeLists.txt - Builds the LibCppLogging library.
 #
-# Copyright (C) 2024 Stephen Bonar
+# Copyright (C) 2025 Stephen Bonar
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,4 +39,4 @@ set_target_properties(LibCppLogging PROPERTIES PREFIX "")
 
 # Added to ensure the header files are automatically resolved when linking
 # to this library.
-target_include_directories(LibCppLogging PUBLIC .)
+target_include_directories(LibCppLogging PUBLIC ${PROJECT_SOURCE_DIR}/include)

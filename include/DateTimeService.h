@@ -1,6 +1,6 @@
-// CTimeService.h - Declares the CTimeService class.
+// DateTimeService.h - Declares the DateTimeService class.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,20 +14,19 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef CTIME_SERVICE_H
-#define CTIME_SERVICE_H
+#ifndef LOGGING_DATE_TIME_SERVICE_H
+#define LOGGING_DATE_TIME_SERVICE_H
 
 #include <string>
-#include <chrono>
-#include <ctime>
-#include "DateTimeService.h"
 
 namespace Logging
 {
-    class CTimeService : public DateTimeService
+    class DateTimeService
     {
     public:
-        std::string Now() const override;
+        virtual ~DateTimeService() = default;
+
+        virtual std::string Now() const = 0;
     };
 }
 

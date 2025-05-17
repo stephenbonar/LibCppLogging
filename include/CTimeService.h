@@ -1,6 +1,6 @@
-// MockDateTimeService.h - Declares the MockDateTimeService class.
+// CTimeService.h - Declares the CTimeService class.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,18 +14,20 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_MOCK_DATE_TIME_SERVICE_H
-#define LOGGING_MOCK_DATE_TIME_SERVICE_H
+#ifndef CTIME_SERVICE_H
+#define CTIME_SERVICE_H
 
-#include <gmock/gmock.h>
+#include <string>
+#include <chrono>
+#include <ctime>
 #include "DateTimeService.h"
 
 namespace Logging
 {
-    class MockDateTimeService : public DateTimeService
+    class CTimeService : public DateTimeService
     {
     public:
-        MOCK_METHOD(std::string, Now, (), (const, override));
+        std::string Now() const override;
     };
 }
 

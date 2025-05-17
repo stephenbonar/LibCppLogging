@@ -1,6 +1,6 @@
-// StandardError.h - Declares the StandardError class.
+// StandardOutput.h - Declares the StandardOutput class.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_STANDARD_ERROR_H
-#define LOGGING_STANDARD_ERROR_H
+#ifndef LOGGING_STANDARD_OUTPUT_H
+#define LOGGING_STANDARD_OUTPUT_H
 
 #include <iostream>
 #include "ChannelSettings.h"
@@ -25,10 +25,10 @@
 
 namespace Logging
 {
-    class StandardError : public OutputChannel
+    class StandardOutput : public OutputChannel
     {
     public:
-        StandardError();
+        StandardOutput();
         
         virtual ChannelSettings Settings() const override { return settings; }
 

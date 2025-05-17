@@ -1,6 +1,6 @@
-// OutputChannel.h - Declares the OutputChannel class.
+// ChannelSettings.h - Declares the ChannelSettings struct.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,27 +14,21 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_OUTPUT_CHANNEL_H
-#define LOGGING_OUTPUT_CHANNEL_H
-
-#include "ChannelSettings.h"
-#include "LogLevel.h"
-#include "LogMessage.h"
+#ifndef LOGGER_CHANNEL_SETTINGS_H
+#define LOGGER_CHANNEL_SETTINGS_H
 
 namespace Logging
 {
-    class OutputChannel
+    struct ChannelSettings
     {
-    public:
-        virtual ~OutputChannel() = default;
-
-        virtual ChannelSettings Settings() const = 0;
-
-        virtual void SetSettings(ChannelSettings settings) = 0;
-
-        virtual void SetMinLogLevel(LogLevel level);
-
-        virtual void Write(LogMessage message) = 0;
+        bool includeFatal = false;
+        bool includeError = false;
+        bool includeWarning = false;
+        bool includeInfo = false;
+        bool includeDebug = false;
+        bool includeTrace = false;
+        bool includeTimestamp = false;
+        bool includeLogLevel = false;
     };
 }
 

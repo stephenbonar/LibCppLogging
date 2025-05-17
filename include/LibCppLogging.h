@@ -1,6 +1,6 @@
-// StandardOutput.h - Declares the StandardOutput class.
+// LibCppLogging.h - The main library header file.
 //
-// Copyright (C) 2024 Stephen Bonar
+// Copyright (C) 2025 Stephen Bonar
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,33 +14,18 @@
 // See the License for the specific language governing permissionsand
 // limitations under the License.
 
-#ifndef LOGGING_STANDARD_OUTPUT_H
-#define LOGGING_STANDARD_OUTPUT_H
+#ifndef LOGGING_H
+#define LOGGING_H
 
-#include <iostream>
 #include "ChannelSettings.h"
+#include "CTimeService.h"
+#include "DateTimeService.h"
+#include "LogFile.h"
+#include "Logger.h"
 #include "LogLevel.h"
 #include "LogMessage.h"
 #include "OutputChannel.h"
-
-namespace Logging
-{
-    class StandardOutput : public OutputChannel
-    {
-    public:
-        StandardOutput();
-        
-        virtual ChannelSettings Settings() const override { return settings; }
-
-        virtual void SetSettings(ChannelSettings settings) override 
-        {
-            this->settings = settings; 
-        }
-
-        virtual void Write(LogMessage message) override;
-    private:
-        ChannelSettings settings;
-    };
-}
+#include "StandardError.h"
+#include "StandardOutput.h"
 
 #endif
